@@ -12,10 +12,8 @@
         @foreach ($elements as $element)
             <tr>
                 <td><a href="{{ route('projects.show', $element->id) }}">{{ $element->id }} </a></td>
-                <td class="d-none d-lg-table-cell"><a
-                        href="{{ route('projects.show', $element->id) }}">{{ $element->name }}</a></td>
-                <td class="d-none d-lg-table-cell"><a
-                        href="{{ route('projects.show', $element->id) }}">{{ $element->created }}</a></td>
+                <td><a href="{{ route('projects.show', $element->id) }}">{{ $element->name }}</a></td>
+                <td><a href="{{ route('projects.show', $element->id) }}">{{ $element->created }}</a></td>
                 <td><a href="{{ route('projects.show', $element->id) }}">{{ $element->programming_languages }}</a></td>
                 <td><a href="{{ route('projects.show', $element->id) }}">{{ $element->frameworks }}</a>
                 </td>

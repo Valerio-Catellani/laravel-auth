@@ -34,20 +34,25 @@ class Helpers
         return $fullTemplate;
     }
 
+    /* TEXT FORMATTER */
     public static function getFormattedWordsWithComma($string)
     {
-        // Rimuove eventuali spazi bianchi all'inizio e alla fine della stringa
         $trimmedString = trim($string);
-
-        // Divide la stringa in un array di parole
         $wordsArray = explode(' ', $trimmedString);
-
-        // Rimuove eventuali elementi vuoti dall'array (nel caso ci siano spazi multipli)
         $wordsArray = array_filter($wordsArray);
-
-        // Unisce le parole con una virgola e uno spazio
         $formattedString = implode(', ', $wordsArray);
 
         return $formattedString;
+    }
+
+    public static function getInitialsFromWords($string)
+    {
+
+        $formattedName = '';
+        foreach (explode(' ', $string) as $parola) {
+            $formattedName .= strtoupper($parola[0]);
+        }
+
+        return $formattedName;
     }
 }
