@@ -54,20 +54,54 @@ header {
         background-color: inherit;
         color: $text-primary-color !important;
 
-        li {
-            &:hover {
-                background-color: $background-tertiary-color;
-            }
-        }
-
         .img-container {
             width: 7%;
             min-width: 90px;
         }
 
+        #hype-nav-menu {
+            li {
+                position: relative;
+                height: 80%;
+                .active {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 10px;
+                        left: 10%;
+                        width: 80%;
+                        height: 2px;
+                        background-color: $background-tertiary-color;
+                    }
+                }
+                a {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 10px;
+                        left: 10%;
+                        width: 0%;
+                        height: 2px;
+                        background-color: $background-tertiary-color;
+                        transition: width 0.2s ease-out;
+                    }
+
+                    &:hover::after {
+                        width: 80%; /* Modifica la larghezza quando passi sopra con il mouse */
+                    }
+                }
+            }
+        }
+
         .user-account {
             color: white;
             background-color: inherit;
+
+            li {
+                &:hover {
+                    background-color: $background-tertiary-color;
+                }
+            }
 
             .icon-container {
                 width: 40px;

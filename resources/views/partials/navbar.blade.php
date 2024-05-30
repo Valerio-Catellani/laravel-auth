@@ -1,17 +1,19 @@
 <header>
     <nav id='hype-custom-nav'
         class="fixed-header container d-flex margin-x-auto rounded-2 align-items-center justify-content-between">
-        <div class="d-flex">
+        <div class="d-flex h-100 align-items-center">
             <div class="img-container py-1">
                 <img class="img-fluid" src="" alt="logo">
             </div>
-            <div class="d-flex">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row  align-items-center gap-5">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+            <div id='hype-nav-menu' class="d-flex h-100 d-none d-lg-block align-items-center">
+                <ul class="navbar-nav h-100 mb-2 mb-lg-0 d-flex flex-row align-items-center">
+                    <li class="nav-item d-flex align-items-center px-3 border-end border-dark-subtle border-2">
+                        <a class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }}"
+                            href="{{ url('/') }}">{{ __('HOME') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/projects') }}">{{ __('All Projects') }}</a>
+                    <li class="nav-item d-flex align-items-center px-3">
+                        <a class="nav-link @guest go-to-login @endguest {{ Route::currentRouteName() === 'projects.index' ? 'active' : '' }}"
+                            href="{{ url('/projects') }}">{{ __('ALL PROJECTS') }}</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +58,7 @@
             <div id='hype-nav-login-bar-input'
                 class="bar-input active-color rounded-bottom-2 position-absolute container d-flex p-0 d-none ">
                 @guest
-                    <div class="singup-container w-50 p-3 border-end border-dark border-2">
+                    <div class="singup-container w-50 p-3 border-end border-dark-subtle border-2">
                         @include('auth.register_custom')
                     </div>
                     @if (Route::has('register'))

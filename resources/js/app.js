@@ -23,7 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('hype-nav-kebab-button').addEventListener('click', function (event) {
         headerHandler.toggleMenu('hype-nav-kebab-menu', event.currentTarget);
     });
+
+    document.querySelectorAll('.go-to-login').forEach((element) => {
+        element.addEventListener('click', (event) => {
+            event.preventDefault();
+            headerHandler.toggleMenu('hype-nav-login-bar-input', document.getElementById('hype-nav-login-button'));
+        })
+    })
+
 });
+
 
 class HypeNav {
     constructor(hypeElement) {
