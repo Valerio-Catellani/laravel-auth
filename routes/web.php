@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Models\Project;
+use App\Functions\Helpers as Help;
 
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('projects', ProjectController::class);
     //altre rotte...
 });
 
@@ -39,7 +42,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('projects', ProjectController::class);
+    Route::get('/projects', function () {
+        $projects = Project::all();
+        foreach ($projects as $project) {
+            $project->programming_languages = Help::getFormattedWordsWithComma($project->programming_languages);
+            $project->frameworks = Help::getFormattedWordsWithComma($project->frameworks);
+        }
+        return view("projects.index", compact("projects"));
+    })->name('projects.index');
+    Route::get('/projects/{project:slug}', [ProjectController::class, 'show'])->name('projects.show');
 });
 
 /*

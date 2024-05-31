@@ -19,7 +19,7 @@ class ProjectController extends Controller
             $project->programming_languages = Help::getFormattedWordsWithComma($project->programming_languages);
             $project->frameworks = Help::getFormattedWordsWithComma($project->frameworks);
         }
-        return view("projects.index", compact("projects"));
+        return view("admin.projects.index", compact("projects"));
     }
 
     /**

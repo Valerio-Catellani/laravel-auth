@@ -8,9 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ config('app.name', 'Laravel') }} - {{ Route::currentRouteName() }}</title>
 
-    {{-- <title>{{ config('app.name', 'Laravel') }} - {{ Route::currentRouteName() }}</title> --}}
-    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,16 +19,16 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body style="height: 150vh">
-    <div id="app">
-
-
-        @include('partials.navbar')
-
-        <main class="">
-            @yield('content')
-
-        </main>
+<body>
+    <div id="admin">
+        <!-- @include('partials.navbar') -->
+        @include('partials.sidebar')
+        <div id="wrapper">
+            <header></header>
+            <main class="">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 

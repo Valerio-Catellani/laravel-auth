@@ -2,18 +2,18 @@
     <nav id='hype-custom-nav'
         class="fixed-header container d-flex margin-x-auto rounded-2 align-items-center justify-content-between">
         <div class="d-flex h-100 align-items-center">
-            <div class="img-container py-1">
-                <img class="img-fluid" src="" alt="logo">
+            <div class="logo-img-container d-flex align-items-center">
+                <img class="img-fluid hype-color-invert" src={{ asset('images/portfolio-logo.png') }} alt="logo">
             </div>
             <div id='hype-nav-menu' class="d-flex h-100 d-none d-lg-block align-items-center">
                 <ul class="navbar-nav h-100 mb-2 mb-lg-0 d-flex flex-row align-items-center">
-                    <li class="nav-item d-flex align-items-center px-3 border-end border-dark-subtle border-2">
+                    <li class="nav-item d-flex align-items-center px-3 custom-border">
                         <a class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }}"
-                            href="{{ url('/') }}">{{ __('HOME') }}</a>
+                            href="{{ route('home') }}">{{ __('HOME') }}</a>
                     </li>
-                    <li class="nav-item d-flex align-items-center px-3">
+                    <li class="nav-item d-flex align-items-center px-3 custom-border">
                         <a class="nav-link @guest go-to-login @endguest {{ Route::currentRouteName() === 'projects.index' ? 'active' : '' }}"
-                            href="{{ url('/projects') }}">{{ __('ALL PROJECTS') }}</a>
+                            href="{{ route('projects.index') }}">{{ __('ALL PROJECTS') }}</a>
                     </li>
                 </ul>
             </div>
@@ -23,11 +23,11 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div id='hype-nav-login-button'
-                class="icon-container rounded-top-2 d-flex flex-column @auth justify-content-start @endauth order-2"
+                class="icon-container rounded-top-2 d-flex flex-column justify-content-center @auth justify-content-start @endauth order-2"
                 role="button">
                 <i class="fa-solid fa-user"></i>
                 @Auth
-                    <p class="fs-6">{{ \App\Functions\Helpers::getInitialsFromWords(Auth::user()->name) }}</p>
+                    <p class="fs-6 mb-0">{{ \App\Functions\Helpers::getInitialsFromWords(Auth::user()->name) }}</p>
                 @endauth
             </div>
             <div id='hype-nav-kebab-button' class="icon-container rounded-top-2 d-lg-none order-1" role="button">
@@ -38,7 +38,7 @@
                 <form class="d-flex p-3" role="search">
                     <input class="form-control me-4 bg-dark-subtle" type="search" placeholder="Search"
                         aria-label="Search">
-                    <button class="btn btn-outline-danger btn-mine text-white hover-size" type="submit">Search</button>
+                    <button class="mine-custom-btn text-white hover-size" type="submit">Search</button>
                 </form>
             </div>
             <div id='hype-nav-kebab-menu'

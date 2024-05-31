@@ -6,30 +6,36 @@ import.meta.glob(["../img/**", "../fonts/**"]);
 
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
-    const headerHandler = new HypeNav(document.getElementById('hype-custom-nav'));
+    if (document.getElementById('hype-custom-nav')) {
+        const header = document.getElementById('hype-custom-nav')
+        setTimeout(() => {
+            header.style.transition = 'transform 0.3s ease-out';
+        }, 200);
+        const headerHandler = new HypeNav(header);
 
-    // Aggiungi un listener per il clic sul pulsante di ricerca
-    document.getElementById('hype-nav-search-button').addEventListener('click', function (event) {
-        headerHandler.toggleMenu('hype-nav-search-bar-input', event.currentTarget);
-    });
 
-    // Aggiungi un listener per il clic sul pulsante di chiusura della ricerca
-    document.getElementById('hype-nav-login-button').addEventListener('click', function (event) {
-        headerHandler.toggleMenu('hype-nav-login-bar-input', event.currentTarget);
-    });
+        // Aggiungi un listener per il clic sul pulsante di ricerca
+        document.getElementById('hype-nav-search-button').addEventListener('click', function (event) {
+            headerHandler.toggleMenu('hype-nav-search-bar-input', event.currentTarget);
+        });
 
-    document.getElementById('hype-nav-kebab-button').addEventListener('click', function (event) {
-        headerHandler.toggleMenu('hype-nav-kebab-menu', event.currentTarget);
-    });
+        // Aggiungi un listener per il clic sul pulsante di chiusura della ricerca
+        document.getElementById('hype-nav-login-button').addEventListener('click', function (event) {
+            headerHandler.toggleMenu('hype-nav-login-bar-input', event.currentTarget);
+        });
 
-    document.querySelectorAll('.go-to-login').forEach((element) => {
-        element.addEventListener('click', (event) => {
-            event.preventDefault();
-            headerHandler.toggleMenu('hype-nav-login-bar-input', document.getElementById('hype-nav-login-button'));
+        document.getElementById('hype-nav-kebab-button').addEventListener('click', function (event) {
+            headerHandler.toggleMenu('hype-nav-kebab-menu', event.currentTarget);
+        });
+
+        document.querySelectorAll('.go-to-login').forEach((element) => {
+            element.addEventListener('click', (event) => {
+                event.preventDefault();
+                headerHandler.toggleMenu('hype-nav-login-bar-input', document.getElementById('hype-nav-login-button'));
+            })
         })
-    })
+    }
 
 });
 
@@ -95,5 +101,6 @@ class HypeNav {
         const renderElement = this.hypeElement;
         renderElement.classList.toggle('window-movement', this.checkMovement());
     }
+
 }
 
