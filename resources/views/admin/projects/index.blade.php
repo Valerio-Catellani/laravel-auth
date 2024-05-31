@@ -1,35 +1,11 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }} - {{ Route::currentRouteName() }}</title>
+@section('title', 'Admin Dashboard / Projects')
+@extends('layouts.admin')
 
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
-</head>
-
-<body>
-    <div id="admin">
-        <!-- @include('partials.navbar') -->
-        @include('partials.sidebar')
-        <div id="wrapper">
-            <header></header>
-            <main class="">
-                @yield('content')
-            </main>
-        </div>
-    </div>
-</body>
-
-</html>
+@section('content')
+    <section class="container py-5">
+        <h1 class="mb-3">All Projects</h1>
+        <a role="button" class="mine-custom-btn mb-3" href="{{ route('admin.projects.create') }}">Add a Project</a>
+        @include('partials.table', ['elements' => $projects])
+    </section>
+@endsection

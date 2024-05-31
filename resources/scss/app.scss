@@ -18,6 +18,7 @@ $background-primary-color:
 $shadow-primary-color: 
 */
 
+/*utilities*/
 .mine-custom-btn {
     // background-color: $active-primary-color !important;
     // border: black 1px solid !important;
@@ -33,7 +34,7 @@ $shadow-primary-color:
     border-radius: 6px;
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
         rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-        rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+        rgba(111, 58, 58, 0.5) 0 -3px 0 inset;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -73,12 +74,29 @@ $shadow-primary-color:
     }
 }
 
+.min-custom-btn-grey {
+    background-image: radial-gradient(
+        100% 100% at 100% 0,
+        $background-4th-color 0,
+        $background-secondary-color 100%
+    ) !important;
+}
+
 .form-control:focus {
     box-shadow: 0 0 0 0.25rem $active-secondary-color !important;
 }
 .logo-img-container {
     width: 50px;
     aspect-ratio: 1/1;
+}
+
+.background-gradient-color {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.8883928571428571) 54%,
+        rgba(140, 0, 0, 1) 99%
+    );
 }
 
 header {
@@ -243,6 +261,12 @@ header {
                 background-color: $background-secondary-color;
                 z-index: 100;
             }
+        }
+
+        main {
+            background-color: $background-4th-color;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
         }
     }
 }

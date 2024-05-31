@@ -10,7 +10,8 @@
             <a class="nav-link text-white " aria-current="page" href="{{ route('admin.dashboard') }}"><i
                     class="fa-solid fa-home fs-4 pe-3"></i>Home</a>
         </li>
-        <li class="nav-item {{ Route::currentRouteName() === 'admin.projects.index' ? 'active' : '' }}">
+        <li
+            class="nav-item {{ Route::currentRouteName() === 'admin.projects.index' || Route::currentRouteName() === 'admin.projects.create' ? 'active' : '' }}">
             <a class="nav-link text-white " aria-current="page" href="{{ route('admin.projects.index') }}"><i
                     class="fa-solid fa-book-open fs-4 pe-3"></i>Projects</a>
         </li>
