@@ -20,8 +20,15 @@
                 </td>
                 <td>
                     <span>modifica</span>
-                    <span>elimina</span>
                     <span>mostra dettagli</span>
+                    <form id="delete-form" action="{{ route('admin.projects.destroy', $element->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button id="element-delete" class="default-button text-danger hype-text-shadow fs-1"
+                            type="submit">
+                            <i class="fa-solid fa-trash-can "></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

@@ -99,6 +99,19 @@ $shadow-primary-color:
     );
 }
 
+.default-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 2rem;
+
+    &:hover {
+        transform: scale(1.2);
+        transition: transform 0.3s ease-in-out;
+    }
+}
+
+/*header*/
 header {
     height: 75px;
     background-color: $background-primary-color;

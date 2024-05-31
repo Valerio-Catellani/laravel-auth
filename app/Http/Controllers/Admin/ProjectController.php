@@ -35,7 +35,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$form_data = $request->validated();
+        $form_data = $request->all();
+        $form_data["slug"] =  Project::generateSlug($form_data["title"]);
+        $new_project = new Project();
+        $new_project->fill($form_data);
+        $new_project->save();
+        return redirect()->route("admin.projects.index");
     }
 
     /**
@@ -67,6 +73,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('message', "Project (id:{$project->id}): {$project->title} eliminato con successo");
     }
 }
