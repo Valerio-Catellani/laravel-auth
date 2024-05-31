@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Functions\Helpers as Help;
+use App\Http\Requests\StoreProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -33,9 +34,10 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //$form_data = $request->validated();
+        //     dd($request->validated());
+        //     $form_data = $request->validated();
         $form_data = $request->all();
         $form_data["slug"] =  Project::generateSlug($form_data["title"]);
         $new_project = new Project();

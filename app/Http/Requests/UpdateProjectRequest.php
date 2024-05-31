@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateProjectRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules()
+    {
+        return [
+            'ttitle' => 'required|max:255|min:3',
+            'description' => 'nullable',
+            'created' => 'required|date_format:Y-m-d',
+            'categories' => 'required|max:255',
+            'technologies' => 'required|max:255',
+            'image_url' => 'nullable|max:255',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'The field :attribute is required.',
+            'title.max' => 'The field :attribute must be no more than 255 characters.',
+            'title.min' => 'The field :attribute must be at least 3 characters.',
+            'description.max' => 'The field :attribute must be no more than 255 characters.',
+            'created.required' => 'The field :attribute is required.',
+            'created.date_format' => 'The field :attribute must be a valid date.',
+            'categories.required' => 'The field :attribute is required.',
+            'categories.max' => 'The field :attribute must be no more than 255 characters.',
+            'technologies.required' => 'The field :attribute is required.',
+            'technologies.max' => 'The field :attribute must be no more than 255 characters.',
+            'image_url.max' => 'The field :attribute must be no more than 255 characters.',
+        ];
+    }
+}
