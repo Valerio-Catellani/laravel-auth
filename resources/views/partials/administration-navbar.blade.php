@@ -6,8 +6,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarAdmin">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item me-2">
+                    <a class="nav-link text-white fs-6" href="{{ route('projects.index') }}"><i
+                            class="fa-solid fa-arrow-left fs-2 position-relative hype-text-shadow"></i> Exit</a>
+                </li>
                 <!-- Notifiche -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown me-2">
                     <a class="nav-link dropdown-toggle text-white fs-6" href="#" id="notificationsDropdown"
                         role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         data-bs-auto-close="false">
@@ -27,7 +31,7 @@
                 </li>
 
                 <!-- Messaggi -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown me-2">
                     <a class="nav-link dropdown-toggle text-white fs-6" href="#" id="messagesDropdown"
                         role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         data-bs-auto-close="false">
@@ -48,7 +52,7 @@
             </ul>
 
             <!-- Link Profilo -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-2">
                 <li class="nav-item">
                     <a class="nav-link text-white fs-6" href="#"><i
                             class="fa-solid fa-user fs-3 position-relative hype-text-shadow"></i> Profilo</a>

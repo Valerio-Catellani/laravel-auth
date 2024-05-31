@@ -1,4 +1,4 @@
-<table class="table table-dark table-hover shadow mb-5 mt-3 hype-unselectable hype-table-clickable">
+<table id="projects-table" class="table table-dark table-hover shadow mb-5 mt-3 hype-unselectable hype-table-clickable">
     <thead>
         <tr>
             <th scope="col">#id Project</th>
@@ -19,16 +19,33 @@
                 <td><a>{{ $element->technologies }}</a>
                 </td>
                 <td>
-                    <span>modifica</span>
-                    <span>mostra dettagli</span>
-                    <form id="delete-form" action="{{ route('admin.projects.destroy', $element->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button id="element-delete" class="default-button text-danger hype-text-shadow fs-1"
-                            type="submit">
-                            <i class="fa-solid fa-trash-can "></i>
-                        </button>
-                    </form>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ route('admin.projects.show', $element) }}" class="table-icon m-1">
+                            <div class="icon-container">
+                                <i
+                                    class=" fa-solid fa-eye fs-3 text-active-tertiary hype-text-shadow hype-hover-size"></i>
+                            </div>
+                        </a>
+                        <a href="{{ route('admin.projects.edit', $element) }}" class="table-icon m-1">
+                            <div class="icon-container">
+                                <i
+                                    class=" fa-solid fa-pen-to-square fs-3 text-active-tertiary hype-text-shadow hype-hover-size"></i>
+                            </div>
+                        </a>
+                        <form id="delete-form" action="{{ route('admin.projects.destroy', $element->id) }}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="element-delete default-button text-active-primary hype-text-shadow fs-3 m-1"
+                                type="submit" data-element-id="{{ $element->id }}"
+                                data-element-title="{{ $element->title }}">
+                                <div class="icon-container">
+                                    <i class="fa-solid fa-trash-can "></i>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+
                 </td>
             </tr>
         @endforeach

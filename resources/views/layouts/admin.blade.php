@@ -23,7 +23,7 @@
     <div id="admin">
         @include('partials.sidebar')
         <div id="wrapper">
-            <header>
+            <header class="shadow">
                 @include('partials.administration-navbar')
             </header>
             <main id="content">

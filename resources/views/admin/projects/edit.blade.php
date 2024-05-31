@@ -6,16 +6,18 @@
     <section class="container py-5">
 
 
-        <div class="container rounded-2 hype-shadow-white p-5 background-gradient-color">
-            <h1 class="text-center hype-text-shadow text-white fw-bolder">Add a Project</h1>
+        <div class="container rounded-2 shadow p-5 background-gradient-color">
+            <h1 class="text-center hype-text-shadow text-white fw-bolder">Edit Project({{ $project->id }}) :
+                {{ $project->title }}</h1>
 
-            <form id="comic-form" action="{{ route('admin.projects.store') }}" method="POST">
+            <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
                 @csrf
-
+                @method('PUT')
                 <div class="mb-3 @error('title') err-animation @enderror">
                     <label for="title" class="form-label text-white">Project Title</label>
                     <input type="text" class="form-control @error('title') is-invalid err-animation @enderror"
-                        id="title" name="title" value="{{ old('title') }}" required maxlength="255" minlength="3">
+                        id="title" name="title" value="{{ old('title', $project->title) }}" required maxlength="255"
+                        minlength="3">
                     @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -24,7 +26,7 @@
                 <div class="mb-3 @error('description') err-animation @enderror">
                     <label for="description" class="form-label text-white">Description</label>
                     <textarea class="form-control @error('description') is-invalid err-animation @enderror" id="description"
-                        name="description" style="min-height: 300px">{{ old('description') }}</textarea>
+                        name="description" style="min-height: 300px">{{ old('description', $project->description) }}</textarea>
                     @error('description')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -33,7 +35,7 @@
                 <div class="mb-3 @error('created') err-animation @enderror">
                     <label for="created" class="form-label text-white">Date of Creation</label>
                     <input type="date" class="form-control @error('created') is-invalid err-animation @enderror"
-                        id="created" name="created" value="{{ old('created') }}" required>
+                        id="created" name="created" value="{{ old('created', $project->created) }}" required>
                     @error('created')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -42,8 +44,8 @@
                 <div class="mb-3 @error('categories') err-animation @enderror">
                     <label for="categories" class="form-label text-white">Project Categories</label>
                     <input type="text" class="form-control @error('categories') is-invalid err-animation @enderror"
-                        id="categories" name="categories" value="{{ old('categories') }}" required maxlength="255"
-                        minlength="3">
+                        id="categories" name="categories" value="{{ old('categories', $project->categories) }}" required
+                        maxlength="255" minlength="3">
                     @error('categories')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -52,8 +54,8 @@
                 <div class="mb-3 @error('technologies') err-animation @enderror">
                     <label for="technologies" class="form-label text-white">Project Technologies</label>
                     <input type="text" class="form-control @error('technologies') is-invalid err-animation @enderror"
-                        id="technologies" name="technologies" value="{{ old('technologies') }}" required maxlength="255"
-                        minlength="3">
+                        id="technologies" name="technologies" value="{{ old('technologies', $project->technologies) }}"
+                        required maxlength="255" minlength="3">
                     @error('technologies')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -71,7 +73,7 @@
                 </div>
                 <br>
                 <div class="text-center w-25 mx-auto d-flex gap-2">
-                    <button type="submit" class="mine-custom-btn mt-3 w-100">Add the Project</button>
+                    <button type="submit" class="mine-custom-btn mt-3 w-100">Edit the Project</button>
                     <a href="{{ route('admin.projects.index') }}"
                         class="mine-custom-btn min-custom-btn-grey mt-3 w-100">Back</a>
                 </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Functions\Helpers as Help;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -37,8 +38,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         //     dd($request->validated());
-        //     $form_data = $request->validated();
-        $form_data = $request->all();
+        $form_data = $request->validated();
         $form_data["slug"] =  Project::generateSlug($form_data["title"]);
         $new_project = new Project();
         $new_project->fill($form_data);
@@ -51,7 +51,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view("admin.projects.show", compact("project"));
     }
 
     /**
@@ -59,15 +59,20 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view("admin.projects.edit", compact("project"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, $id)
     {
-        //
+        $project_to_change =  Project::findOrFail($id);
+        $form_data = $request->validated();
+        $form_data["slug"] =  Project::generateSlug($form_data["title"]);
+        $project_to_change->fill($form_data);
+        $project_to_change->update();
+        return redirect()->route("admin.projects.index")->with('message', "Project (id:{$project_to_change->id}): {$project_to_change->title} modificato con successo");
     }
 
     /**

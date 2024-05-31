@@ -22,7 +22,7 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'ttitle' => 'required|max:255|min:3',
+            'title' => 'required|max:255|min:3',
             'description' => 'nullable',
             'created' => 'required|date_format:Y-m-d',
             'categories' => 'required|max:255',

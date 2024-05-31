@@ -10,13 +10,34 @@ $fa-font-path: "../fonts/webfonts" !default;
 
 @import "~bootstrap/scss/bootstrap";
 
-/**
-* Variables
-$text-primary-color:
-$background-secondary-color
-$background-primary-color: 
-$shadow-primary-color: 
-*/
+/*colors*/
+.background-gradient-color-red {
+    background-image: radial-gradient(
+        100% 100% at 100% 0,
+        $active-secondary-color 0,
+        $active-primary-color 100%
+    ) !important;
+}
+.text-active-primary {
+    color: $active-primary-color !important;
+}
+
+.text-active-secondary {
+    color: $active-secondary-color !important;
+}
+
+.text-active-tertiary {
+    color: $active-tertiary-color !important;
+}
+
+.background-gradient-color {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.8883928571428571) 54%,
+        rgba(140, 0, 0, 1) 99%
+    );
+}
 
 /*utilities*/
 .mine-custom-btn {
@@ -88,15 +109,6 @@ $shadow-primary-color:
 .logo-img-container {
     width: 50px;
     aspect-ratio: 1/1;
-}
-
-.background-gradient-color {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0.8883928571428571) 54%,
-        rgba(140, 0, 0, 1) 99%
-    );
 }
 
 .default-button {
@@ -289,13 +301,36 @@ header {
 
         header {
             height: 80px;
-            background-color: $background-secondary-color;
+            background-image: linear-gradient(
+                to right,
+                $background-primary-color 10%,
+                $background-secondary-color 20%
+            );
             display: flex;
             justify-content: end;
+            position: relative;
+            z-index: 10;
             padding-right: 30px;
             nav {
                 background-color: $background-secondary-color;
                 z-index: 100;
+                li {
+                    position: relative;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 2px;
+                        left: 10%;
+                        width: 0%;
+                        height: 3px;
+                        background-color: $active-primary-color;
+                        transition: width 0.2s ease-out;
+                    }
+
+                    &:hover::after {
+                        width: 80%; /* Modifica la larghezza quando passi sopra con il mouse */
+                    }
+                }
             }
         }
 
@@ -304,5 +339,19 @@ header {
             height: calc(100vh - 80px);
             overflow-y: auto;
         }
+    }
+}
+
+#projects-table {
+    .table-icon {
+        padding: 0 !important;
+        width: auto !important;
+    }
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
     }
 }
