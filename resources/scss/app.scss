@@ -9,6 +9,7 @@ $fa-font-path: "../fonts/webfonts" !default;
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
 @import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Jersey+15&family=Oleo+Script:wght@400;700&display=swap");
 
 /*colors*/
 .background-gradient-color-red {
@@ -39,7 +40,17 @@ $fa-font-path: "../fonts/webfonts" !default;
     );
 }
 
+.background-gradient-modal {
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
 /*utilities*/
+body {
+    font-family: "Amita", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .mine-custom-btn {
     // background-color: $active-primary-color !important;
     // border: black 1px solid !important;
@@ -108,6 +119,7 @@ $fa-font-path: "../fonts/webfonts" !default;
 }
 .logo-img-container {
     width: 50px;
+    min-width: 50px;
     aspect-ratio: 1/1;
 }
 
@@ -266,7 +278,15 @@ header {
 
     #sidebar {
         background-color: $background-primary-color;
+        z-index: 20;
+        width: 250px;
+        transition: width 0.5s ease-out;
 
+        #hype-sidebar-collapse {
+            top: 40px;
+            transform: translateY(-50%);
+            right: -30px;
+        }
         li {
             background: linear-gradient(
                 to right,
@@ -291,6 +311,19 @@ header {
                 width: 5px;
                 height: 100%;
                 background-color: $active-primary-color;
+            }
+        }
+    }
+
+    .sidebard-collapse {
+        width: 80px !important;
+    }
+
+    @media screen and (max-width: 767px) {
+        .sidebar-risize {
+            width: 80px !important;
+            .hype-text-collapse {
+                display: none;
             }
         }
     }
@@ -343,6 +376,12 @@ header {
 }
 
 #projects-table {
+    --bs-table-bg: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.88) 54%,
+        rgba(140, 0, 0, 1) 99%
+    );
+    background: var(--bs-table-bg);
     .table-icon {
         padding: 0 !important;
         width: auto !important;

@@ -2,11 +2,12 @@
     <thead>
         <tr>
             <th scope="col">#id Project</th>
-            <th scope="col">Project Name</th>
-            <th scope="col">Created at</th>
-            <th scope="col">Categories</th>
-            <th scope="col">Techonlogies</th>
-            <th scope="col">Amministration Actions</th>
+            <th scope="col">Project Title</th>
+            <th scope="col" class="d-none d-xl-table-cell">Created at</th>
+            <th scope="col" class="d-none d-lg-table-cell">Categories</th>
+            <th scope="col" class="d-none d-lg-table-cell">Techonlogies</th>
+            <th scope="col" class=" {{ Route::currentRouteName() === 'admin.projects.index' ? '' : 'd-none' }}">
+                Amministration Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -14,11 +15,11 @@
             <tr>
                 <td><a>{{ $element->id }} </a></td>
                 <td><a>{{ $element->title }}</a></td>
-                <td><a>{{ $element->created }}</a></td>
-                <td><a>{{ $element->categories }}</a></td>
-                <td><a>{{ $element->technologies }}</a>
+                <td class="d-none d-xl-table-cell"><a>{{ $element->created }}</a></td>
+                <td class="d-none d-lg-table-cell"><a>{{ $element->categories }}</a></td>
+                <td class="d-none d-lg-table-cell"><a>{{ $element->technologies }}</a>
                 </td>
-                <td>
+                <td class=" {{ Route::currentRouteName() === 'admin.projects.index' ? '' : 'd-none' }}">
                     <div class="d-flex justify-content-center">
                         <a href="{{ route('admin.projects.show', $element) }}" class="table-icon m-1">
                             <div class="icon-container">

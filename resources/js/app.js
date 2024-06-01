@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
-
-
 class HypeNav {
     constructor(hypeElement) {
         this.hypeElement = hypeElement;
@@ -119,15 +117,18 @@ document.querySelectorAll('.element-delete').forEach((element) => {
         myModal.show();
         const btnSave = HypeModal.querySelector('.modal-delete-button')
         btnSave.addEventListener('click', () => {
-            console.log(element);
             element.parentElement.submit();
             HypeModal.remove();
         })
+        console.log(HypeModal.getElementsByTagName('button'));
+        const buttons = Array.from(HypeModal.getElementsByTagName('button'));
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                HypeModal.remove();
+            });
+        });
     })
 })
-
-
-
 function createModal(ElementId, ElementName) {
     const modal = document.createElement('div');
     modal.classList.add('modal', 'fade');
@@ -136,7 +137,7 @@ function createModal(ElementId, ElementName) {
     modal.setAttribute('aria-labelledby', 'exampleModalLabel');
     modal.setAttribute('aria-hidden', 'true');
     let tmp = `<div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
+          <div class="modal-content background-gradient-modal text-white hype-shadow-white">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Cancellazione elemento: ${ElementName} - id: ${ElementId}</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -153,3 +154,15 @@ function createModal(ElementId, ElementName) {
     modal.innerHTML = tmp;
     document.body.appendChild(modal);
 }
+
+
+document.querySelectorAll('#hype-sidebar-collapse').forEach((element) => {
+    element.addEventListener('click', (event) => {
+        event.preventDefault();
+        const HypeSidebar = document.getElementById('sidebar');
+        document.querySelectorAll('.hype-text-collapse').forEach((element) => {
+            element.classList.toggle('d-none');
+        })
+        HypeSidebar.classList.toggle('sidebard-collapse');
+    })
+})

@@ -57,3 +57,19 @@ $increment_1: 1;
 .hype-color-invert {
     filter: invert(1);
 }
+
+@mixin hype-responsive($class, $operator, $breakpoint) {
+    @if $operator == "<" {
+        @media (max-width: $breakpoint) {
+            .#{$class} {
+                @content;
+            }
+        }
+    } @else if $operator == ">" {
+        @media (min-width: $breakpoint) {
+            .#{$class} {
+                @content;
+            }
+        }
+    }
+}
