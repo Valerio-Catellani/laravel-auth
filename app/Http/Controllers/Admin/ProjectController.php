@@ -16,7 +16,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        //$projects = Project::all();
+        $projects = Project::paginate(15);
         foreach ($projects as $project) {
             $project->programming_languages = Help::getFormattedWordsWithComma($project->programming_languages);
             $project->frameworks = Help::getFormattedWordsWithComma($project->frameworks);
@@ -69,7 +70,9 @@ class ProjectController extends Controller
     {
         $project_to_change =  Project::findOrFail($id);
         $form_data = $request->validated();
-        $form_data["slug"] =  Project::generateSlug($form_data["title"]);
+        if ($project_to_change->title != $form_data["title"]) {
+            $form_data["slug"] =  Project::generateSlug($form_data["title"]);
+        }
         $project_to_change->fill($form_data);
         $project_to_change->update();
         return redirect()->route("admin.projects.index")->with('message', "Project (id:{$project_to_change->id}): {$project_to_change->title} modificato con successo");

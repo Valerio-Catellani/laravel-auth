@@ -14,10 +14,10 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $project = new Project();
-            $project->title = $faker->word();
-            $project->slug = Project::generateSlug($project->name);
+            $project->title = $faker->words(rand(2, 7), true);
+            $project->slug = Project::generateSlug($project->title);
             $project->description = $faker->sentence();
             $project->created = $faker->dateTime();
             $project->categories = $faker->words(rand(2, 5), true);

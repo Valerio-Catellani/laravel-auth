@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/projects', function () {
-        $projects = Project::all();
+
+        $projects = Project::paginate(15);
         foreach ($projects as $project) {
             $project->programming_languages = Help::getFormattedWordsWithComma($project->programming_languages);
             $project->frameworks = Help::getFormattedWordsWithComma($project->frameworks);

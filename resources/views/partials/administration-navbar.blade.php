@@ -18,15 +18,15 @@
                         <i class="fa-solid fa-bell fs-3 position-relative hype-text-shadow"> <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small fs-6">
                                 5
-                            </span></i> Notifiche
+                            </span></i> Notifications
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationsDropdown">
-                        <a class="dropdown-item" href="#">Nuova notifica</a>
-                        <a class="dropdown-item" href="#">Notifica 1</a>
-                        <a class="dropdown-item" href="#">Notifica 2</a>
-                        <a class="dropdown-item" href="#">Notifica 3</a>
+                        <a class="dropdown-item" href="#">New notification</a>
+                        <a class="dropdown-item" href="#">Notification 1</a>
+                        <a class="dropdown-item" href="#">Notification 2</a>
+                        <a class="dropdown-item" href="#">Notification 3</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Visualizza tutte le notifiche</a>
+                        <a class="dropdown-item" href="#">Show all notifications</a>
                     </div>
                 </li>
 
@@ -38,15 +38,15 @@
                         <i class="fa-solid fa-envelope fs-3 position-relative hype-text-shadow"><span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small fs-6">
                                 2
-                            </span></i> Messaggi
+                            </span></i> Messages
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                        <a class="dropdown-item" href="#">Nuovo messaggio</a>
-                        <a class="dropdown-item" href="#">Messaggio 1</a>
-                        <a class="dropdown-item" href="#">Messaggio 2</a>
-                        <a class="dropdown-item" href="#">Messaggio 3</a>
+                        <a class="dropdown-item" href="#">New messages</a>
+                        <a class="dropdown-item" href="#">message 1</a>
+                        <a class="dropdown-item" href="#">message 2</a>
+                        <a class="dropdown-item" href="#">message 3</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Visualizza tutti i messaggi</a>
+                        <a class="dropdown-item" href="#">Show all messages</a>
                     </div>
                 </li>
             </ul>
@@ -55,7 +55,7 @@
             <ul class="navbar-nav me-2">
                 <li class="nav-item">
                     <a class="nav-link text-white fs-6" href="#"><i
-                            class="fa-solid fa-user fs-3 position-relative hype-text-shadow"></i> Profilo</a>
+                            class="fa-solid fa-user fs-3 position-relative hype-text-shadow"></i> Profile</a>
                 </li>
                 <!-- Pulsante Logout -->
                 <li class="nav-item"> <a class="nav-link text-white fs-6 " href="{{ route('logout') }}"

@@ -19,12 +19,12 @@ class Project extends Model
         'image_url',
     ];
 
-    public static function generateSlug($name)
+    public static function generateSlug($title)
     {
-        $slug = Str::slug($name, '-');
+        $slug = Str::slug($title, '-');
         $count = 1;
         while (Project::where('slug', $slug)->first()) {
-            $slug = Str::slug($name . '-' . $count, '-');
+            $slug = Str::of($title)->slug('-') . "-{$count}";
             $count++;
         }
         return $slug;

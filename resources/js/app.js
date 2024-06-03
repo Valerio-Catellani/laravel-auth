@@ -110,7 +110,6 @@ document.querySelectorAll('.element-delete').forEach((element) => {
         event.preventDefault();
         const ElementId = element.getAttribute('data-element-id');
         const ElementName = element.getAttribute('data-element-title');
-        console.log(ElementId, ElementName);
         createModal(ElementId, ElementName);
         const HypeModal = document.getElementById('hype-modal');
         const myModal = new bootstrap.Modal(HypeModal)
@@ -120,7 +119,6 @@ document.querySelectorAll('.element-delete').forEach((element) => {
             element.parentElement.submit();
             HypeModal.remove();
         })
-        console.log(HypeModal.getElementsByTagName('button'));
         const buttons = Array.from(HypeModal.getElementsByTagName('button'));
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
