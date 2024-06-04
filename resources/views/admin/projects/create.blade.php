@@ -9,7 +9,7 @@
         <div class="container rounded-2 hype-shadow-white p-5 background-gradient-color">
             <h1 class="text-center hype-text-shadow text-white fw-bolder">Add a Project</h1>
 
-            <form id="comic-form" action="{{ route('admin.projects.store') }}" method="POST">
+            <form id="comic-form" action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3 @error('title') err-animation @enderror">
@@ -59,15 +59,20 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 @error('image_url') err-animation @enderror">
-                    <label for="image" class="form-label text-white">Image (URL)</label>
-                    <input type="text" class="form-control @error('image_url') is-invalid err-animation @enderror"
-                        id="image" name="image_url"
-                        value="{{ old('image_url', 'https://picsum.photos/seed/picsum/200/300?random') }}" required
-                        maxlength="255">
-                    @error('image_url')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                <div class="mb-3 @error('image_url') err-animation @enderror d-flex gap-5 align-items-center">
+                    <div class="w-25 text-center">
+                        <img id="uploadPreview" class="w-100" width="100"
+                            src="{{ Vite::asset('public/images/placeholder.png') }}">
+                    </div>
+                    <div class="w-75">
+                        <label for="image" class="form-label text-white">Image (URL)</label>
+                        <input type="file" accept="image/*"
+                            class="form-control @error('image_url') is-invalid err-animation @enderror" id="upload_image"
+                            name="image_url" value="{{ old('image_url') }}" required maxlength="255">
+                        @error('image_url')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 <br>
                 <div class="text-center w-25 mx-auto d-flex gap-2">

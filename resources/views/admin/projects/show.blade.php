@@ -11,7 +11,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-4">
-                        <img class="img-fluid w-100" src="{{ $project->image_url }}" alt="{{ $project->title }}">
+                        <img class="img-fluid w-100" src="{{ asset('storage') . '/' . $project->image_url }}"
+                            alt="{{ $project->title }}">
                     </div>
                     <div class="col-8 d-flex flex-column text-white">
                         <h4 class="mb-1">Title</h4>

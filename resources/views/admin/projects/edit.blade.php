@@ -10,7 +10,7 @@
             <h1 class="text-center hype-text-shadow text-white fw-bolder">Edit Project({{ $project->id }}) :
                 {{ $project->title }}</h1>
 
-            <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+            <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3 @error('title') err-animation @enderror">
@@ -61,22 +61,32 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 @error('image_url') err-animation @enderror">
-                    <label for="image" class="form-label text-white">Image (URL)</label>
-                    <input type="text" class="form-control @error('image_url') is-invalid err-animation @enderror"
-                        id="image" name="image_url"
-                        value="{{ old('image_url', 'https://picsum.photos/seed/picsum/200/300?random') }}" required
-                        maxlength="255">
-                    @error('image_url')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <br>
-                <div class="text-center w-25 mx-auto d-flex gap-2">
-                    <button type="submit" class="mine-custom-btn mt-3 w-100">Edit the Project</button>
-                    <a href="{{ route('admin.projects.index') }}"
-                        class="mine-custom-btn min-custom-btn-grey mt-3 w-100">Back</a>
-                </div>
+
+                <div class="mb-3 @error('image_url') err-animation @enderror d-flex gap-5 align-items-center">
+                    <div class="w-25 text-center">
+                        @if ($project->image_url)
+                            <img id="uploadPreview" class="w-100" width="100"
+                                src="{{ asset('storage/' . $project->image_url) }}" alt="preview">
+                        @else
+                            <img id="uploadPreview" class="w-100" width="100" src="/images/placeholder.png"
+                                alt="preview">
+                        @endif
+                    </div>
+                    <div class="w-75">
+                        <label for="image" class="form-label text-white">Image (URL)</label>
+                        <input type="file" accept="image/*"
+                            class="form-control @error('image_url') is-invalid err-animation @enderror" id="upload_image"
+                            name="image_url" value="{{ old('image_url', $project->image_url) }}" required>
+                        @error('image_url')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <br>
+                    <div class="text-center w-25 mx-auto d-flex gap-2">
+                        <button type="submit" class="mine-custom-btn mt-3 w-100">Edit the Project</button>
+                        <a href="{{ route('admin.projects.index') }}"
+                            class="mine-custom-btn min-custom-btn-grey mt-3 w-100">Back</a>
+                    </div>
             </form>
         </div>
 

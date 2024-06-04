@@ -27,7 +27,7 @@ class StoreProjectRequest extends FormRequest
             'created' => 'required|date_format:Y-m-d',
             'categories' => 'required|max:255',
             'technologies' => 'required|max:255',
-            'image_url' => 'nullable|max:255',
+            'image_url' => 'nullable|image',
         ];
     }
 

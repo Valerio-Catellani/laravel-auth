@@ -394,3 +394,9 @@ header {
         width: 40px;
     }
 }
+
+.page-item.active {
+    .page-link {
+        background-color: green !important;
+    }
+}

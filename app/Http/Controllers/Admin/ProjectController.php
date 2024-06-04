@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Functions\Helpers as Help;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -41,6 +42,10 @@ class ProjectController extends Controller
         //     dd($request->validated());
         $form_data = $request->validated();
         $form_data["slug"] =  Project::generateSlug($form_data["title"]);
+        if ($request->hasFile('image_url')) {
+            $img_path = Storage::put('my_images', $request->image_url);
+            $form_data['image_url'] = $img_path;
+        }
         $new_project = new Project();
         $new_project->fill($form_data);
         $new_project->save();
@@ -72,6 +77,13 @@ class ProjectController extends Controller
         $form_data = $request->validated();
         if ($project_to_change->title != $form_data["title"]) {
             $form_data["slug"] =  Project::generateSlug($form_data["title"]);
+        }
+        if ($request->hasFile('image_url')) {
+            if ($project_to_change->image_url) {
+                Storage::delete($project_to_change->image_url);
+            }
+            $img_path = Storage::put('my_images', $request->image_url);
+            $form_data['image_url'] = $img_path;
         }
         $project_to_change->fill($form_data);
         $project_to_change->update();
