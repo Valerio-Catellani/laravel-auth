@@ -61,6 +61,22 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <label for="category_id" class="form-label">Select Category</label>
+                    <select name="category_id" id="category_id"
+                        class="form-control @error('category_id') is-invalid @enderror">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $category->id == $project->category_id ? 'selected' : '' }}>{{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
 
                 <div class="mb-3 @error('image_url') err-animation @enderror d-flex gap-5 align-items-center">
                     <div class="w-25 text-center">

@@ -21,8 +21,10 @@
                         <p>{{ $project->description }}</p>
                         <h4 class="mb-1">Created At</h4>
                         <h6>{{ $project->created }}</h6>
-                        <h4 class="mb-1">Categories</h4>
-                        <h6>{{ $project->categories }}</h6>
+                        @if ($project->category)
+                            <h4 class="mb-1">Category</h4>
+                            <h6>{{ $project->category->name }}</h6>
+                        @endif
                         <h4 class="mb-1">Technologies</h4>
                         <h6>
                             {{ $project->technologies }}
@@ -52,6 +54,6 @@
             </div>
 
         </div>
-
     </section>
+
 @endsection

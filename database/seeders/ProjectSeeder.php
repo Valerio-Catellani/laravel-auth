@@ -20,7 +20,6 @@ class ProjectSeeder extends Seeder
             $project->slug = Project::generateSlug($project->title);
             $project->description = $faker->sentence();
             $project->created = $faker->dateTime();
-            $project->categories = $faker->words(rand(2, 5), true);
             $project->technologies = $faker->sentence(rand(2, 5), true);
             $project->image_url = $faker->sentence();
             $project->save();

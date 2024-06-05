@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,7 @@ class Project extends Model
         'categories',
         'technologies',
         'image_url',
+        'category_id'
     ];
 
     public static function generateSlug($title)
@@ -28,5 +30,15 @@ class Project extends Model
             $count++;
         }
         return $slug;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

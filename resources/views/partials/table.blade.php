@@ -16,7 +16,13 @@
                 <td><a>{{ $element->id }} </a></td>
                 <td><a>{{ $element->title }}</a></td>
                 <td class="d-none d-xl-table-cell"><a>{{ $element->created }}</a></td>
-                <td class="d-none d-lg-table-cell"><a>{{ $element->categories }}</a></td>
+                <td class="d-none d-lg-table-cell"><a>
+                        @if ($element->category)
+                            {{ $element->category->name }}
+                        @else
+                            Nessuna categoria
+                        @endif
+                    </a></td>
                 <td class="d-none d-lg-table-cell"><a>{{ $element->technologies }}</a>
                 </td>
                 <td class=" {{ Route::currentRouteName() === 'admin.projects.index' ? '' : 'd-none' }}">
