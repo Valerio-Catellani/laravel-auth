@@ -13,11 +13,12 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['design', 'front-end', 'back-end', 'database', 'full-stack'];
-        foreach ($categories as $category) {
+        $categories_data = json_decode(file_get_contents(__DIR__ . '\category_db.json'), true);
+
+        foreach ($categories_data as $category) {
             $new_category = new Category();
-            $new_category->name = $category;
-            $new_category->slug = Category::generateSlug($category);
+            $new_category->name = $category['name'];
+            $new_category->slug = Category::generateSlug($category['name']);
             $new_category->save();
         }
     }

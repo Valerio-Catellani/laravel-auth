@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->date('created');
-            $table->string('technologies');
             $table->string('image_url', 255)->nullable();
             $table->timestamps();
         });

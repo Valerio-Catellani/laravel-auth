@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function index()
     {
         //$projects = Project::all();
-        $projects = Project::paginate(15);
+        $projects = Project::paginate(5);
         foreach ($projects as $project) {
             $project->programming_languages = Help::getFormattedWordsWithComma($project->programming_languages);
             $project->frameworks = Help::getFormattedWordsWithComma($project->frameworks);

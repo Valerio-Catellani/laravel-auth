@@ -55,4 +55,9 @@ class Helpers
 
         return $formattedName;
     }
+
+    public static function getRandomValue($array)
+    {
+        return $array[array_rand($array)];
+    }
 }

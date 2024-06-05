@@ -31,9 +31,8 @@ class UpdateProjectRequest extends FormRequest
             ],
             'description' => 'nullable',
             'created' => 'required|date_format:Y-m-d',
-            'categories' => 'required|max:255',
-            'technologies' => 'required|max:255',
-            'image_url' => 'nullable|max:255',
+            'image_url' => 'nullable|image',
+            'category_id' => 'nullable|exists:categories,id'
         ];
     }
 
@@ -46,10 +45,7 @@ class UpdateProjectRequest extends FormRequest
             'description.max' => 'The field :attribute must be no more than 255 characters.',
             'created.required' => 'The field :attribute is required.',
             'created.date_format' => 'The field :attribute must be a valid date.',
-            'categories.required' => 'The field :attribute is required.',
-            'categories.max' => 'The field :attribute must be no more than 255 characters.',
-            'technologies.required' => 'The field :attribute is required.',
-            'technologies.max' => 'The field :attribute must be no more than 255 characters.',
+            'category_id.exists' => 'The field :attribute must exist.',
             'image_url.max' => 'The field :attribute must be no more than 255 characters.',
         ];
     }

@@ -39,34 +39,14 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 @error('categories') err-animation @enderror">
-                    <label for="categories" class="form-label text-white">Project Categories</label>
-                    <input type="text" class="form-control @error('categories') is-invalid err-animation @enderror"
-                        id="categories" name="categories" value="{{ old('categories') }}" required maxlength="255"
-                        minlength="3">
-                    @error('categories')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3 @error('technologies') err-animation @enderror">
-                    <label for="technologies" class="form-label text-white">Project Technologies</label>
-                    <input type="text" class="form-control @error('technologies') is-invalid err-animation @enderror"
-                        id="technologies" name="technologies" value="{{ old('technologies') }}" required maxlength="255"
-                        minlength="3">
-                    @error('technologies')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Select Category</label>
                     <select name="category_id" id="category_id"
                         class="form-control @error('category_id') is-invalid @enderror">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}"
-                                {{ $category->id == old('category_id') ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }}>
+                                {{ $category->name }}</option>
                         @endforeach
                     </select>
                     @error('category_id')

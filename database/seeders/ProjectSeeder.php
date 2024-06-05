@@ -14,15 +14,17 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 100; $i++) {
-            $project = new Project();
-            $project->title = $faker->words(rand(2, 7), true);
-            $project->slug = Project::generateSlug($project->title);
-            $project->description = $faker->sentence();
-            $project->created = $faker->dateTime();
-            $project->technologies = $faker->sentence(rand(2, 5), true);
-            $project->image_url = $faker->sentence();
-            $project->save();
+        $data = json_decode(file_get_contents(__DIR__ . '\project_db.json'), true);
+        $categories_data = json_decode(file_get_contents(__DIR__ . '\category_db.json'), true);
+        foreach ($data as $project) {
+            $new_project = new Project();
+            $new_project->title = $project['title'];
+            $new_project->slug = Project::generateSlug($project['title']);
+            $new_project->description = $project['description'];
+            $new_project->category_id = $categories_data[array_rand($categories_data)]['id'];
+            $new_project->created = $project['created'];
+            $new_project->image_url = $project['image_url'];
+            $new_project->save();
         }
     }
 }
